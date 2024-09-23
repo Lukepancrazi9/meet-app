@@ -6,7 +6,7 @@ As a user,
 I should be able to filter events by city
 So that I can see a list of events taking place in that city.
 
-Scenario: User filters events by a selected city
+Scenario: User filters events by a selected city <br />
     - Given the user is on the events page <br />
     - When the user selects a specific city from the city filter dropdown <br />
     - Then the list of events should display only events happening in that particular city 
@@ -16,12 +16,12 @@ As a user
 I want to expand or collapse event details
 So that I can see more or less information about the event
 
-Scenario: User clicks to show event details
+Scenario: User clicks to show event details <br />
     - Given the user is viewing a list of events <br />
     - When the user clicks on "Show Details" for an event <br />
     - Then the detailed information for that event should be displayed 
 
-Scenario: User clicks to hide event details
+Scenario: User clicks to hide event details <br />
     - Given the user has already expanded the event details <br />
     - When the user clicks on "Hide Details" <br />
     - Then the detailed information should be collapsed
@@ -31,7 +31,7 @@ As a user
 I want to specify how many events are displayed at once
 So that I can control the length of the events list
 
-Scenario: User sets the number of events to display
+Scenario: User sets the number of events to display <br />
     - Given the user is on the events page <br />
     - When the user selects "10" from the number of events dropdown <br />
     - Then only 10 events should be displayed on the page
@@ -41,7 +41,7 @@ As a user
 I want to be able to use the app even when I am offline
 So that I can still see previously loaded events
 
-Scenario: User goes offline and uses the app
+Scenario: User goes offline and uses the app <br />
     - Given the user loses internet connection while on the app <br />
     - When the user refreshes the page <br />
     - Then the previously loaded events should still be displayed
@@ -52,7 +52,7 @@ As a user
 I want to add a shortcut for the app to my home screen
 So that I can quickly access it
 
-Scenario: User adds app shortcut to the home screen
+Scenario: User adds app shortcut to the home screen <br />
     - Given the user is using the app on a mobile device <br />
     - When the user selects "Add to Home Screen" from the browser options <br />
     - Then an app shortcut should be added to their home screen
@@ -62,7 +62,7 @@ As a user
 I want to see charts that visualize event statistics
 So that I can understand event trends better
 
-Scenario: User views charts displaying event statistics
+Scenario: User views charts displaying event statistics <br />
     - Given the user is viewing an event's details <br />
     - When the user scrolls to the event statistics section <br />
     - Then a chart should be displayed showing the number of attendees over time
