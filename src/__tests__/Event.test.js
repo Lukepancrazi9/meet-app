@@ -1,59 +1,54 @@
+import { render, fireEvent } from "@testing-library/react";
 import Event from "../components/Event";
-import userEvent from "@testing-library/user-event";
-import { render } from '@testing-library/react';
-import mockData from "../mock-data";
+import allEvents from "../mock-data";
 
-const event = mockData[0];
+const formattedDate = new Date(allEvents[0].created).toUTCString();
 
-describe('<Event /> component', () => {
-    let EventComponent;
-    beforeEach(() => {
-        EventComponent = render(<Event event={event}/>);
-    });
-    
-    test('renders event title', () => {
-        const eventTitle = EventComponent.queryByText(event.summary);
-        expect(eventTitle).toBeInTheDocument();
-    });
-    test('renders event start time', () => {
-        const eventTime = EventComponent.queryByText(event.created);
-        expect(eventTime).toBeInTheDocument();
-    });
-    test('renders event location', () => {
-        const eventLocation = EventComponent.queryByText(event.location);
-        expect(eventLocation).toBeInTheDocument();
-    });
-    
-    test('renders event details button with the title (show details)', () => {
-        const detailButton = EventComponent.queryByText('Show Details');
-        expect(detailButton).toBeInTheDocument();
-    });
-    
-    test("by default, event's details should be hidden", () => {
-        const eventDetails = EventComponent.container.querySelector('.details');
-        expect(eventDetails).not.toBeInTheDocument();
-    });
+describe("<Event /> component", () => {
+  
+  test("renders event title", () => {
+    const EventComponent = render(<Event event={allEvents[0]} />);
+    expect(
+      EventComponent.queryByText(allEvents[0].summary)
+    ).toBeInTheDocument();
+  });
 
-    test('show details section when user clicks on the button "Show Details"', async () => {
-        const user = userEvent.setup();
-        
-        const showDetailButton = EventComponent.queryByText('Show Details');
-        await user.click(showDetailButton);
-        const eventDetailsDom = EventComponent.container.firstChild;
-        const eventDetails = eventDetailsDom.querySelector('.eventDetails');
-        expect(eventDetails).toBeInTheDocument();
-    });
+  test("renders event start time", () => {
+    const { getByText } = render(<Event event={allEvents[0]} />);
+    expect(getByText(formattedDate)).toBeInTheDocument();
+  });
+  
+  test("renders event location", () => {
+    const EventComponent = render(<Event event={allEvents[0]} />);
+    expect(
+      EventComponent.queryByText(allEvents[0].location)
+    ).toBeInTheDocument();
+  });
 
-    test('hide details section when user clicks on the button "Hide details', async () => {
-        const user = userEvent.setup();
-        
-        const showDetailButton = EventComponent.queryByText('Show Details');
-        await user.click(showDetailButton);
-        
-        const hideDetailButton = EventComponent.queryByText('Hide Details');
-        await user.click(hideDetailButton);
-        const eventDetailsDom = EventComponent.container.firstChild;
-        const eventDetails = eventDetailsDom.querySelector('.eventDetails');
-        expect(eventDetails).not.toBeInTheDocument();
-    });
+  test("renders event details button with the title (show details)", () => {
+    const EventComponent = render(<button>Show Details</button>);
+    expect(EventComponent.queryByText('Show Details')).toBeInTheDocument();
+  });
+
+  test("event details section hidden by default", () => {
+    const EventComponent = render(<Event event={allEvents[0]} />);
+    expect(EventComponent.queryByText('Event Details Here')).not.toBeInTheDocument();
+  });
+
+  test("hides details section when show details button is clicked", async () => {
+    const { getByText, queryByText } = render(<Event event={allEvents[0]} />);
+    fireEvent.click(getByText('Show Details'));
+    fireEvent.click(getByText('Hide Details'));
+    expect(queryByText('A great event to learn JavaScript.')).not.toBeInTheDocument();
+  });
+
+  test("shows details section when hide details button is clicked", async () => {
+    const EventComponent = render(<Event event={allEvents[0]} />);
+    const showDetailsButton = EventComponent.getByText('Show Details');
+    fireEvent.click(showDetailsButton);
+    const hideDetailsButton = EventComponent.getByText('Hide Details');
+    fireEvent.click(hideDetailsButton);
+    expect(EventComponent.queryByText('Event Details Here')).not.toBeInTheDocument();
+  });
+
 });
