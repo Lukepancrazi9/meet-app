@@ -1,7 +1,10 @@
-import { render, within, waitFor} from "@testing-library/react";
+/* eslint-disable testing-library/no-render-in-setup */
+/* eslint-disable testing-library/prefer-screen-queries */
+/* eslint-disable testing-library/no-node-access */
+
+import { render } from "@testing-library/react";
 import { loadFeature, defineFeature } from "jest-cucumber";
 import App from "../App";
-import { getEvents } from '../api';
 import NumberOfEvents from "../components/NumberOfEvents";
 import userEvent from "@testing-library/user-event";
 

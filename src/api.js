@@ -1,4 +1,4 @@
-// src/api.js
+/* eslint-disable no-useless-concat */
 
 import mockData from './mock-data';
 

@@ -1,4 +1,8 @@
-// src/__tests__/EventList.test.js
+/* eslint-disable testing-library/no-node-access */
+/* eslint-disable testing-library/no-render-in-setup */
+/* eslint-disable testing-library/prefer-presence-queries */
+/* eslint-disable testing-library/render-result-naming-convention */
+/* eslint-disable testing-library/prefer-screen-queries */
 
 import { render, within, waitFor } from '@testing-library/react';
 import EventList from '../components/EventList';

@@ -1,3 +1,10 @@
+/* eslint-disable testing-library/no-node-access */
+/* eslint-disable testing-library/prefer-presence-queries */
+/* eslint-disable testing-library/prefer-screen-queries */
+/* eslint-disable testing-library/no-render-in-setup */
+/* eslint-disable testing-library/render-result-naming-convention */
+
+
 import { render, fireEvent } from "@testing-library/react";
 import Event from "../components/Event";
 import allEvents from "../mock-data";

@@ -1,3 +1,7 @@
+/* eslint-disable testing-library/no-render-in-setup */
+/* eslint-disable testing-library/prefer-presence-queries */
+/* eslint-disable testing-library/prefer-screen-queries */
+
 import NumberOfEvents from '../components/NumberOfEvents';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
